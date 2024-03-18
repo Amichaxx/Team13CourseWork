@@ -74,5 +74,30 @@ survey['Gender'] = survey['Gender'].apply(categorize_gender)
 # amina: cleaned age column
 survey = survey[(survey['Age'] >= 18) & (survey['Age'] <= 70)]
 
+#lily: cleaning mental consequnce, phys consequence, mental interview, phys interview
+def clean(x):
+    if x in {"Yes", 1}:
+        return "1"
+    if x in {"No", 2}:
+        return "2"
+    if x in {"Maybe", 3}:
+        return "3"
+    
+survey['mental_health_consequence'] = survey['mental_health_consequence'].apply(change)
+survey['phys_health_consequence'] = survey['phys_health_consequence'].apply(change)
+survey['mental_health_interview'] = survey['mental_health_interview'].apply(change)
+survey['phys_health_interview'] = survey['phys_health_interview'].apply(change)
+
+#lily: cleaning mental vs physical
+def cleanvs(x):
+     if x in {"Yes", 1}:
+        return "1"
+     if x in {"No", 2}:
+         return "2"
+     if x in {"Don't know", 3}:
+         return "3"
+     
+survey['mental_vs_physical'] = survey['mental_vs_physical'].apply(change)
+
 # commiting the changes to the file
 survey.to_csv('survey.csv', index=False)
