@@ -2,6 +2,7 @@ import pandas as pd
     
 survey = pd.read_csv('survey.csv')
 
+# removes empty rows
 survey.dropna(subset=['work_interfere'], inplace=True)
 
 def replace(x):
