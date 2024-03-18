@@ -3,11 +3,11 @@ import pandas as pd
 survey = pd.read_csv('survey.csv')
 
 def replace(x):
-    if x in {"Yes"}:
+    if x in {"Yes", 1}:
         return "1"
-    if x in {"No"}:
+    if x in {"No", 2}:
         return "2"
-    if x in {"Don't know", "Not sure"}:
+    if x in {"Don't know", "Not sure", 3}:
         return "3"
 
 survey['benefits'] = survey['benefits'].apply(replace)

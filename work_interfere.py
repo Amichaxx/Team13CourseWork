@@ -6,13 +6,13 @@ survey = pd.read_csv('survey.csv')
 survey.dropna(subset=['work_interfere'], inplace=True)
 
 def replace(x):
-    if x in {"Often"}:
+    if x in {"Often", 1}:
         return "1"
-    if x in {"Sometimes"}:
+    if x in {"Sometimes", 2}:
         return "2"
-    if x in {"Rarely"}:
+    if x in {"Rarely", 3}:
         return "3"
-    if x in {"Never"}:
+    if x in {"Never", 4}:
         return "4"
 
 survey['work_interfere'] = survey['work_interfere'].apply(replace)
