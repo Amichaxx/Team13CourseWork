@@ -99,5 +99,16 @@ def cleanvs(x):
      
 survey['mental_vs_physical'] = survey['mental_vs_physical'].apply(change)
 
+# zaakiyah: cleaned no_employees column
+def categorize_company_size(employee_count):
+    if employee_count in {"1-5", "6-25", "26-100"}:
+        return "Small"
+    elif employee_count in {"100-500"}:
+        return "Medium"
+    else:
+        return "Large"
+    
+survey['no_employees'] = survey['no_employees'].apply(categorize_company_size)
+
 # commiting the changes to the file
 survey.to_csv('survey.csv', index=False)
