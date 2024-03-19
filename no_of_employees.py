@@ -12,4 +12,4 @@ def categorize_company_size(employee_count):
     
 survey['no_employees'] = survey['no_employees'].apply(categorize_company_size)
 
-survey.to_csv('cleaned_csv_file.csv', index=False)
+survey.to_csv('survey.csv', index=False)
