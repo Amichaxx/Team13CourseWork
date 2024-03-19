@@ -1,3 +1,5 @@
+#all cleaning scripts in one place
+
 import pandas as pd
     
 survey = pd.read_csv('survey.csv')
