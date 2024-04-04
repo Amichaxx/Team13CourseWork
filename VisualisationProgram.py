@@ -1,3 +1,8 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+data = pd.read_csv("survey.csv")
+
 def print_menu():
     print()
     print("=== MENU ===")
@@ -19,7 +24,7 @@ def get_option():
         except ValueError:
             print("Invalid input. Please enter a number.")
 
-def culture_and_countries():
+def culture_and_countries(): #Tsiko, Khushi
     while True:
         print()
         print("=== Culture & Countries ===")
@@ -40,7 +45,7 @@ def culture_and_countries():
         else:
             print("Invalid option. Please select a valid option.")
 
-def gender():
+def gender(): #Lily, Zaakiyah
     while True:
         print()
         print("=== Gender ===")
@@ -60,7 +65,7 @@ def gender():
         else:
             print("Invalid option. Please select a valid option.")
 
-def age():
+def age(): #Lily, Zaakiyah
     while True:
         print()
         print("=== Age ===")
@@ -81,7 +86,7 @@ def age():
         else:
             print("Invalid option. Please select a valid option.")
 
-def company_culture():
+def company_culture(): #Haaniah, Amina, Rida
     while True:
         print()
         print("=== Company Culture ===")
@@ -93,7 +98,33 @@ def company_culture():
         choice = input("Enter your option: ").strip().lower()
         if choice == 'a':
             print("--- Do employees in companies with wellness programs report lower levels of work interference because of their mental health? ---")
-            # Your method call for the question here
+            work_interference_map = {1: 'Often', 2: 'Sometimes', 3: 'Rarely', 4: 'Never'}
+            with_wellness_program = data[data['wellness_program'] == 1]
+            without_wellness_program = data[data['wellness_program'] == 2]
+            
+            with_work_interference_counts = with_wellness_program['work_interfere'].value_counts().sort_index()
+            without_work_interference_counts = without_wellness_program['work_interfere'].value_counts().sort_index()
+            
+            with_work_interference_counts.index = with_work_interference_counts.index.map(work_interference_map)
+            without_work_interference_counts.index = without_work_interference_counts.index.map(work_interference_map)
+            
+            work_interference_labels = with_work_interference_counts.index
+            
+            plt.figure(figsize=(10, 5))
+            
+            plt.subplot(1, 2, 1)
+            plt.pie(with_work_interference_counts, labels=work_interference_labels, autopct='%1.1f%%', startangle=90)
+            plt.title('Employee Work Interference With Wellness Program')
+
+            plt.subplot(1, 2, 2)
+            plt.pie(without_work_interference_counts, labels=work_interference_labels, autopct='%1.1f%%', startangle=90)
+            plt.title('Employee Work Interference Without Wellness Program')
+            
+            plt.legend(work_interference_labels, loc='center left', bbox_to_anchor=(1, 0.5))
+            
+            plt.tight_layout()
+            plt.show()
+
         elif choice == 'b':
             print("--- Does the staff in the company have a good or bad image on mental health? ---")
             # Your method call for the question here
@@ -102,7 +133,7 @@ def company_culture():
         else:
             print("Invalid option. Please select a valid option.")
 
-def work_environment():
+def work_environment(): #Haaniah, Amina, Rida
     while True:
         print()
         print("=== Work Environment ===")
@@ -122,7 +153,29 @@ def work_environment():
             # Your method call for the question here
         elif choice == 'c':
             print("--- Are employees in tech companies more/less likely to seek help compared to those in non-tech companies? ---")
-            # Your method call for the question here
+            tech_yes_count = data[(data['tech_company'] == 'Yes') & (data['seek_help'] == 1)].shape[0]
+            tech_no_count = data[(data['tech_company'] == 'Yes') & (data['seek_help'] == 2)].shape[0]
+            non_tech_yes_count = data[(data['tech_company'] == 'No') & (data['seek_help'] == 1)].shape[0]
+            non_tech_no_count = data[(data['tech_company'] == 'No') & (data['seek_help'] == 2)].shape[0]
+
+            labels = ['Yes', 'No']
+            tech_counts = [tech_yes_count, tech_no_count]
+            non_tech_counts = [non_tech_yes_count, non_tech_no_count]
+            x = range(len(labels))
+            width = 0.35
+
+            plt.bar(x, tech_counts, width=width, color='blue', label='Tech Company')
+            plt.bar([pos + width for pos in x], non_tech_counts, width=width, color='red', label='Non-Tech Company')
+
+            plt.xlabel('Seek Help')
+            plt.ylabel('Responses')
+            plt.title('Likelihood of Seeking Help by Company Type')
+            plt.xticks([pos + width / 2 for pos in x], labels)
+            plt.legend()
+            plt.grid(True)
+            plt.legend()
+            plt.show()
+
         elif choice == 'd':
             print("--- Does being self-employed increase the chances of mental health? ---")
             # Your method call for the question here
