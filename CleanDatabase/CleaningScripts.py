@@ -85,10 +85,10 @@ def clean(x):
     if x in {"Maybe", 3}:
         return "3"
     
-survey['mental_health_consequence'] = survey['mental_health_consequence'].apply(change)
-survey['phys_health_consequence'] = survey['phys_health_consequence'].apply(change)
-survey['mental_health_interview'] = survey['mental_health_interview'].apply(change)
-survey['phys_health_interview'] = survey['phys_health_interview'].apply(change)
+survey['mental_health_consequence'] = survey['mental_health_consequence'].apply(clean)
+survey['phys_health_consequence'] = survey['phys_health_consequence'].apply(clean)
+survey['mental_health_interview'] = survey['mental_health_interview'].apply(clean)
+survey['phys_health_interview'] = survey['phys_health_interview'].apply(clean)
 
 #lily: cleaning mental vs physical
 def cleanvs(x):
@@ -99,7 +99,7 @@ def cleanvs(x):
      if x in {"Don't know", 3}:
          return "3"
      
-survey['mental_vs_physical'] = survey['mental_vs_physical'].apply(change)
+survey['mental_vs_physical'] = survey['mental_vs_physical'].apply(cleanvs)
 
 # zaakiyah: cleaned no_employees column
 def categorize_company_size(employee_count):
