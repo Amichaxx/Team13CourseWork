@@ -3,6 +3,46 @@ import matplotlib.pyplot as plt
 
 data = pd.read_csv("survey.csv")
 
+def remoteWorking(): #hani q1
+    # --- Does remote working have a positive/negative effect on mental health (compared to working in an office)? ---
+
+    remote = (data[data['remote_work']=='Yes'].shape[0])/100 # 299 responses
+    office = (data[data['remote_work']=='No'].shape[0])/100 # 689 repsonses
+    
+    fig, ax = plt.subplots()
+    ax.set_title("The Effects of Remote Working on Mental Health")
+
+    x_labels = ['Remote', 'Office']
+    y_labels = [remote, office]
+
+    ax.bar(x_labels, y_labels, color=['magenta', 'pink'])
+   
+    plt.xlabel('Work Area')
+    plt.ylabel('No. of Responses (hundreds)')
+
+    plt.show()
+   
+def largeCompanies(): #hani q2
+    # --- Are employees in larger companies more likely to discuss mental health related issues with co-workers and/or supervisors? And does this have a positive/negative outcome? ---
+    
+    small = data[data['no_employees']=='Small'].shape[0] # 584 responses
+    medium = data[data['no_employees']=='Medium'].shape[0] # 140 responses
+    large = data[data['no_employees']=='Large'].shape[0] # 264 responses
+    
+    fig, ax = plt.subplots()
+    ax.set_title("Title")
+
+    x_labels = ['Small', 'Medium', 'Large']
+    y_labels = [small, medium, large]
+
+    ax.bar(x_labels, y_labels, color=['indigo', 'purple', 'violet'])
+   
+    plt.xlabel('Company Size')
+    plt.ylabel('No. of Responses')
+
+    plt.show()
+    
+
 def print_menu():
     print()
     print("=== MENU ===")
@@ -147,10 +187,12 @@ def work_environment(): #Haaniah, Amina, Rida
         choice = input("Enter your option: ").strip().lower()
         if choice == 'a':
             print("--- Does remote working have a positive/negative effect on mental health (compared to working in an office)? ---")
-            # Your method call for the question here
+            # Your method call for the question here - hani q1
+            remoteWorking()
         elif choice == 'b':
             print("--- Are employees in larger companies more likely to discuss mental health related issues with co-workers and/or supervisors? And does this have a positive/negative outcome? ---")
-            # Your method call for the question here
+            # Your method call for the question here - hani q2
+            largeCompanies()
         elif choice == 'c':
             print("--- Are employees in tech companies more/less likely to seek help compared to those in non-tech companies? ---")
             tech_yes_count = data[(data['tech_company'] == 'Yes') & (data['seek_help'] == 1)].shape[0]
