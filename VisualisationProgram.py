@@ -61,7 +61,6 @@ def DiscussionInCompanies(): #hani q2
     large_2_supervisor = data[(data['no_employees']=='Large') & (data['supervisor']==2)].shape[0] # some of them 
     large_3_supervisor = data[(data['no_employees']=='Large') & (data['supervisor']==3)].shape[0] # no 
     
-
     x_labels_bar = ['Yes', 'Some', 'No']
     
     y_labels_s_coworkers = [small_1_coworkers, small_2_coworkers, small_3_coworkers]
