@@ -5,24 +5,34 @@ data = pd.read_csv("survey.csv")
 
 def remoteWorking(): #hani q1
     # --- Does remote working have a positive/negative effect on mental health (compared to working in an office)? ---
+    # answer columns: work_interfere
 
-    remote = (data[data['remote_work']=='Yes'].shape[0])/100 # 299 responses
-    office = (data[data['remote_work']=='No'].shape[0])/100 # 689 repsonses
+    remote_1 = data[(data['remote_work'] == 'Yes') & (data['work_interfere'] == 1)].shape[0]
+    remote_2 = data[(data['remote_work'] == 'Yes') & (data['work_interfere'] == 2)].shape[0]
+    remote_3 = data[(data['remote_work'] == 'Yes') & (data['work_interfere'] == 3)].shape[0]
+    remote_4 = data[(data['remote_work'] == 'Yes') & (data['work_interfere'] == 4)].shape[0]
     
-    fig, ax = plt.subplots()
-    ax.set_title("The Effects of Remote Working on Mental Health")
+    office_1 = data[(data['remote_work'] == 'No') & (data['work_interfere'] == 1)].shape[0]
+    office_2 = data[(data['remote_work'] == 'No') & (data['work_interfere'] == 2)].shape[0]
+    office_3 = data[(data['remote_work'] == 'No') & (data['work_interfere'] == 3)].shape[0]
+    office_4 = data[(data['remote_work'] == 'No') & (data['work_interfere'] == 4)].shape[0]
 
-    x_labels = ['Remote', 'Office']
-    y_labels = [remote, office]
+    x_labels = ['Often', 'Sometimes', 'Rarely', 'Never']
+    y_labels = [remote_1, remote_2, remote_3,remote_4]
+    y_labels_o = [office_1, office_2, office_3,office_4]
 
-    ax.bar(x_labels, y_labels, color=['hotpink', 'pink'])
-   
-    plt.xlabel('Work Area')
-    plt.ylabel('No. of Responses (hundreds)')
-
+    plt.title('The Effects of Remote Working on Mental Health')
+    plt.plot(x_labels, y_labels, color='turquoise', label = 'Remote')
+    plt.plot(x_labels, y_labels_o, color='mediumaquamarine', label = 'Office')
+    
+    plt.xlabel('Frequency of Work Interference')
+    plt.ylabel('No. of Responses')
+    
+    plt.legend()
     plt.show()
+
    
-def DiscussionInCompanies1(): #hani q2
+def DiscussionInCompanies(): #hani q2
     # --- Are employees in larger companies more likely to discuss mental health related issues with co-workers and/or supervisors? ---
     # answer columns: coworkers, supervisor
     
@@ -170,8 +180,6 @@ def DiscussionInCompanies1(): #hani q2
     
     plt.tight_layout()
     plt.show()
-    
-  
     
 
 def print_menu():
@@ -323,7 +331,7 @@ def work_environment(): #Haaniah, Amina, Rida
         elif choice == 'b':
             print("--- Are employees in larger companies more likely to discuss mental health related issues with co-workers and/or supervisors? And does this have a positive/negative outcome? ---")
             # Your method call for the question here - hani q2
-            DiscussionInCompanies1()
+            DiscussionInCompanies()
         elif choice == 'c':
             print("--- Are employees in tech companies more/less likely to seek help compared to those in non-tech companies? ---")
             tech_yes_count = data[(data['tech_company'] == 'Yes') & (data['seek_help'] == 1)].shape[0]
