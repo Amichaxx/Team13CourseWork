@@ -15,32 +15,101 @@ def remoteWorking(): #hani q1
     x_labels = ['Remote', 'Office']
     y_labels = [remote, office]
 
-    ax.bar(x_labels, y_labels, color=['magenta', 'pink'])
+    ax.bar(x_labels, y_labels, color=['hotpink', 'pink'])
    
     plt.xlabel('Work Area')
     plt.ylabel('No. of Responses (hundreds)')
 
     plt.show()
    
-def largeCompanies(): #hani q2
+def DiscussionInCompanies(): #hani q2
     # --- Are employees in larger companies more likely to discuss mental health related issues with co-workers and/or supervisors? And does this have a positive/negative outcome? ---
+    # answer columns: coworkers, supervisors, mental_health_consequence, phys_health_consequence
     
-    small = data[data['no_employees']=='Small'].shape[0] # 584 responses
-    medium = data[data['no_employees']=='Medium'].shape[0] # 140 responses
-    large = data[data['no_employees']=='Large'].shape[0] # 264 responses
+    # Figure 2: PIE CHART
+    small_1_mental = data[(data['no_employees']=='Small') & (data['mental_health_consequence']==1)] # yes - 139 responses
+    small_2_mental = data[(data['no_employees']=='Small') & (data['mental_health_consequence']==2)] # no - 234 responses
+    small_3_mental = data[(data['no_employees']=='Small') & (data['mental_health_consequence']==3)] # maybe - 211 responses
     
-    fig, ax = plt.subplots()
-    ax.set_title("Title")
-
-    x_labels = ['Small', 'Medium', 'Large']
-    y_labels = [small, medium, large]
-
-    ax.bar(x_labels, y_labels, color=['indigo', 'purple', 'violet'])
+    small_1_phys = data[(data['no_employees']=='Small') & (data['phys_health_consequence']==1)] # yes
+    small_2_phys = data[(data['no_employees']=='Small') & (data['phys_health_consequence']==2)] # no
+    small_3_phys = data[(data['no_employees']=='Small') & (data['phys_health_consequence']==3)] # maybe
+    
+    # Figure 1: BAR CHART
+    small_1_coworkers = data[(data['no_employees']=='Small') & (data['coworkers']==1)].shape[0] # yes - 118
+    small_2_coworkers = data[(data['no_employees']=='Small') & (data['coworkers']==2)].shape[0] # some of them - 360
+    small_3_coworkers = data[(data['no_employees']=='Small') & (data['coworkers']==3)].shape[0] # no - 106 
+    
+    small_1_supervisor = data[(data['no_employees']=='Small') & (data['supervisor']==1)].shape[0] # yes
+    small_2_supervisor = data[(data['no_employees']=='Small') & (data['supervisor']==2)].shape[0] # some of them 
+    small_3_supervisor = data[(data['no_employees']=='Small') & (data['supervisor']==3)].shape[0] # no 
+    
+    medium_1_coworkers = data[(data['no_employees']=='Medium') & (data['coworkers']==1)].shape[0] # yes - 24
+    medium_2_coworkers = data[(data['no_employees']=='Medium') & (data['coworkers']==2)].shape[0] # some of them - 94
+    medium_3_coworkers = data[(data['no_employees']=='Medium') & (data['coworkers']==3)].shape[0] # no - 22
+    
+    medium_1_supervisor = data[(data['no_employees']=='Medium') & (data['supervisor']==1)].shape[0] # yes
+    medium_2_supervisor = data[(data['no_employees']=='Medium') & (data['supervisor']==2)].shape[0] # some of them 
+    medium_3_supervisor = data[(data['no_employees']=='Medium') & (data['supervisor']==3)].shape[0] # no 
+    
+    large_1_coworkers = data[(data['no_employees']=='Large') & (data['coworkers']==1)].shape[0] # yes - 35
+    large_2_coworkers = data[(data['no_employees']=='Large') & (data['coworkers']==2)].shape[0] # some of them - 154
+    large_3_coworkers = data[(data['no_employees']=='Large') & (data['coworkers']==3)].shape[0] # no - 75
+    
+    large_1_supervisor = data[(data['no_employees']=='Large') & (data['supervisor']==1)].shape[0] # yes
+    large_2_supervisor = data[(data['no_employees']=='Large') & (data['supervisor']==2)].shape[0] # some of them 
+    large_3_supervisor = data[(data['no_employees']=='Large') & (data['supervisor']==3)].shape[0] # no 
+    
+    
+    x_labels_pie = ['Yes', 'No', 'Maybe']
+    x_labels_bar = ['Yes', 'Some', 'No']
+    
+    y_labels_s_mental = [small_1_mental, small_2_mental, small_3_mental]
+    y_labels_s_phys = [small_1_phys, small_2_phys, small_3_phys]
+    
+    y_labels_s_coworkers = [small_1_coworkers, small_2_coworkers, small_3_coworkers]
+    y_labels_m_coworkers = [medium_1_coworkers, medium_2_coworkers, medium_3_coworkers]
+    y_labels_l_coworkers = [large_1_coworkers, large_2_coworkers, large_3_coworkers]
+    
+    y_labels_s_supervisor = [small_1_supervisor, small_2_supervisor, small_3_supervisor]
+    y_labels_m_supervisor  = [medium_1_supervisor, medium_2_supervisor, medium_3_supervisor]
+    y_labels_l_supervisor  = [large_1_supervisor, large_2_supervisor, large_3_supervisor]
+    
+    
+    x_length = range(len(x_labels_bar))
+    width = 0.25
+    
+    fig1, (l, r) = plt.subplots(1,2)
+    fig1.suptitle("Discussing Mental Health Related Issues in Various Sized Companies")
    
-    plt.xlabel('Company Size')
-    plt.ylabel('No. of Responses')
+    l.set_title("Coworkers")
+    l.bar(x_labels_bar, y_labels_s_coworkers, width=width, color=['powderblue'], label='Small')
+    l.bar([x + width for x in x_length], y_labels_m_coworkers, width=width, color=['plum'], label='Medium')
+    l.bar([x + width * 2 for x in x_length], y_labels_l_coworkers, width=width, color=['pink'], label='Large')
+    
+    l.set_xlabel('Types of Responses')
+    l.set_ylabel('No. of Responses')
+    l.set_xticks([x + width for x in x_length], x_labels_bar)
+    
+    r.set_title("Supervisor")
+    r.bar(x_labels_bar, y_labels_s_supervisor, width=width, color=['powderblue'], label='Small')
+    r.bar([x + width for x in x_length], y_labels_m_supervisor, width=width, color=['plum'], label='Medium')
+    r.bar([x + width * 2 for x in x_length], y_labels_l_supervisor, width=width, color=['pink'], label='Large')
+    
+    r.set_xlabel('Types of Responses')
+    r.set_ylabel('No. of Responses')
+    r.set_xticks([x + width for x in x_length], x_labels_bar)
+    plt.legend()
+    
+    
+    
+    
 
-    plt.show()
+    plt.tight_layout()
+    fig1.show()  
+    
+    
+  
     
 
 def print_menu():
@@ -192,7 +261,7 @@ def work_environment(): #Haaniah, Amina, Rida
         elif choice == 'b':
             print("--- Are employees in larger companies more likely to discuss mental health related issues with co-workers and/or supervisors? And does this have a positive/negative outcome? ---")
             # Your method call for the question here - hani q2
-            largeCompanies()
+            DiscussionInCompanies()
         elif choice == 'c':
             print("--- Are employees in tech companies more/less likely to seek help compared to those in non-tech companies? ---")
             tech_yes_count = data[(data['tech_company'] == 'Yes') & (data['seek_help'] == 1)].shape[0]
