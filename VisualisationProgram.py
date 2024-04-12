@@ -22,11 +22,13 @@ def remoteWorking(): #hani q1
     y_labels_o = [office_1, office_2, office_3,office_4]
 
     plt.title('The Effects of Remote Working on Mental Health')
-    plt.plot(x_labels, y_labels, color='turquoise', label = 'Remote')
+    plt.plot(x_labels, y_labels, color='green', label = 'Remote')
     plt.plot(x_labels, y_labels_o, color='mediumaquamarine', label = 'Office')
     
     plt.xlabel('Frequency of Work Interference')
     plt.ylabel('No. of Responses')
+    
+    plt.ylim(bottom = 0)
     
     plt.legend()
     plt.show()
@@ -169,7 +171,7 @@ def DiscussionInCompanies(): #hani q2
     plt.tight_layout()
     plt.show()
     
-    # figure 2.3: large
+    # figure 4: large
     plt.figure(4)
     plt.suptitle("Consquences of Discussing Mental Health Related Issues in a Large Sized Company")
     
