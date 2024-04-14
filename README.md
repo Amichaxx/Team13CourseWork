@@ -1,5 +1,4 @@
 # Team 13's Course Work - Mental Health in Technology
-=================================================================
 # How To Run Main Application:
 - Download and unzip code
 - Run VisualisationProgram.py for everyone's visualisations in one place.
@@ -10,7 +9,6 @@
 - Navigate to the IndividualDataVisualisations
 - Each file is named after one team member and contains their own individual contributed visualisations
 - These can be run by double clicking their respective .py file and their visualisations should run automatically on the console
-=================================================================
 # Explanation of columns encoding:
 Age Column -
 Changed to remove erroneous data and to only include rows with age 18-70.
