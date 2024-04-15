@@ -263,7 +263,6 @@ def staffAttitude():
     supervisor.set_xlabel('Frequency of supervisors')
     supervisor.set_ylabel('Responses')
 
-
     plt.ylim(bottom = 0)
 
     plt.legend()
@@ -463,7 +462,8 @@ def company_culture(): #Haaniah, Amina, Rida
         elif choice == 'b':
             print("--- Do the staff in tech companies have a good attitude towards mental health? ---")
             # Your method call for the question here - rida q1
-            staffAttitude()
+            xy = staffAttitude()
+            print(xy)
 
         elif choice == '0':
             break
@@ -518,7 +518,8 @@ def work_environment(): #Haaniah, Amina, Rida
         elif choice == 'd':
             print("--- Does being self-employed increase the chances of mental health? ---")
             # Your method call for the question here - rida q2
-            selfEmployment()
+            staff = selfEmployment()
+            print(staff)
 
         elif choice == '0':
             break
