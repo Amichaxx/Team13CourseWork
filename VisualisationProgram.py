@@ -332,7 +332,7 @@ def culture_and_countries(): #Tsiko, Khushi
 
         choice = input("Enter your option: ").strip().lower()
         if choice == 'a':
-            print("--- Which country has the highest mental health issues? ---")
+            print("--- Which continent has the highest mental health issues? ---")
             # Your method call for the question here
         elif choice == 'b':
             print("--- Is there an increase in mental health awareness in higher income countries than lower income countries? ---")
