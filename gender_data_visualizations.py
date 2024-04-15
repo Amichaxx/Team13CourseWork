@@ -9,7 +9,7 @@ def mental_health_by_gender():
     male_data = data[data['Gender'] == 'male']
     other_data = data[data['Gender'] == 'other']
 
-    # Count responses for each supervisor level
+    # Count responses for each supervisor report
     female_supervisor_counts = female_data['supervisor'].value_counts().sort_index()
     male_supervisor_counts = male_data['supervisor'].value_counts().sort_index()
     other_supervisor_counts = other_data['supervisor'].value_counts().sort_index()
