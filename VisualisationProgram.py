@@ -421,7 +421,7 @@ def culture_and_countries(): #Tsiko, Khushi
             print("--- Does the country provide any kind of support or resources for people dealing with mental health? ---")
             # Your method call for the question here
         elif choice == 'd':
-            print("--- In what ways do cultural distinctions affect how tech workers in Japan and the US see and handle mental health concerns? ---")
+            print("--- Whether or not people from United States and United Kingdom seek treatment for mental health issues?​ ---")
             # Your method call for the question here
             treatment()
         elif choice == '0':
