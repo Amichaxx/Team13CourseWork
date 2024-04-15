@@ -296,6 +296,35 @@ def selfEmployment(): # rida q2
 
     xy = selfEmployment()
     print(xy)
+
+def treatment():#Khushi question 1d
+
+    countries = ['United States', 'United Kingdom']
+    
+    sa_y = data[(data['Country'] ==  'United States') & (data['treatment'] == 'Yes')].shape[0]
+    ja_y = data[(data['Country'] == 'United Kingdom') & (data['treatment'] == 'Yes')].shape[0]
+
+    sa_n = data[(data['Country'] ==  'United States') & (data['treatment'] == 'No')].shape[0]
+    ja_n = data[(data['Country'] == 'United Kingdom') & (data['treatment'] == 'No')].shape[0] 
+    
+    yes_labels = [sa_y, ja_y]
+    no_labels = [sa_n, ja_n]
+    
+    x_length = range(len(countries))
+    width = 0.25
+
+    plt.bar(countries, yes_labels, width=width, color='blue', label='seeked help')
+    plt.bar([x + width for x in x_length], no_labels, width=width, color='pink', label='not seeked help')
+                                                                            
+                                        
+    plt.title('sought treatment for mental health')
+    plt.xlabel('Country')
+    plt.ylabel('Number of responses')
+    plt.grid(True)
+    plt.legend()
+    plt.show()
+    
+    print(data[data["Country"] == 'United Kingdom'])
     
 
 def print_menu():
@@ -394,6 +423,7 @@ def culture_and_countries(): #Tsiko, Khushi
         elif choice == 'd':
             print("--- In what ways do cultural distinctions affect how tech workers in Japan and the US see and handle mental health concerns? ---")
             # Your method call for the question here
+            treatment()
         elif choice == '0':
             break
         else:
