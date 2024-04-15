@@ -297,7 +297,7 @@ def selfEmployment(): # rida q2
     xy = selfEmployment()
     print(xy)
 
-def treatment():#Khushi question 1d
+def treatment():
 
     countries = ['United States', 'United Kingdom']
     
@@ -356,7 +356,7 @@ def culture_and_countries(): #Tsiko, Khushi
         print("[a] Which country has the highest mental health issues?")
         print("[b] Is there an increase in mental health awareness in higher income countries than lower income countries?")
         print("[c] Does the country provide any kind of support or resources for people dealing with mental health?")
-        print("[d] In what ways do cultural distinctions affect how tech workers in Japan and the US see and handle mental health concerns?")
+        print("[d] Whether or not people from United States and United Kingdom seek treatment for mental health issues?")
         print("[0] Back to main menu")
 
         choice = input("Enter your option: ").strip().lower()
