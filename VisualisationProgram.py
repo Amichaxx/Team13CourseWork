@@ -402,7 +402,7 @@ def company_culture(): #Haaniah, Amina, Rida
             plt.show()
 
         elif choice == 'b':
-            print("--- Does the staff in the company have a good or bad image on mental health? ---")
+            print("--- Do the staff in tech companies have a good attitude towards mental health? ---")
 # Do the staff in tech companies have a good attitude towards mental health?
 # Columns used: coworkers, supervisors, seek_help
             coworker_1 = data[(data['coworkers'] == 1) & (data['seek_help'] == 1)].shape[0] #yes
@@ -486,7 +486,28 @@ def work_environment(): #Haaniah, Amina, Rida
 
         elif choice == 'd':
             print("--- Does being self-employed increase the chances of mental health? ---")
-            # Your method call for the question here
+# Does being self-employed increase the chances of mental health issues?
+# Columns used: self_employed, work_interference
+
+            self_employed_1 = data[(data['self_employed'] == 'Yes') & (data['work_interfere'] == 1)].shape[0] # often
+            self_employed_2 = data[(data['self_employed'] == 'Yes') & (data['work_interfere'] == 2)].shape[0] # sometimes
+            self_employed_3 = data[(data['self_employed'] == 'Yes') & (data['work_interfere'] == 3)].shape[0] # rarely
+            self_employed_4 = data[(data['self_employed'] == 'Yes') & (data['work_interfere'] == 4)].shape[0] # never
+    
+            x = ['Often', 'Sometimes', 'Rarely', 'Never']
+            y = [self_employed_1, self_employed_2, self_employed_3, self_employed_4]
+    
+            plt.title('How self - employment effects mental health')
+            plt.bar(x, y, color= ['firebrick', 'darkorange', 'dimgray', 'midnightblue'])
+    
+            plt.xlabel('Frequency of Work Interference')
+            plt.ylabel('Responses')
+    
+            plt.ylim(bottom = 0)
+    
+            plt.legend()
+            plt.show()
+
         elif choice == '0':
             break
         else:
