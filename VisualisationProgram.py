@@ -267,7 +267,9 @@ def staffAttitude():
 
     plt.legend()
     plt.show()
-    
+
+    staff = staffAttitude()
+    print(staff)
 
 def selfEmployment(): # rida q2
 # Does being self-employed increase the chances of mental health issues?
@@ -291,6 +293,9 @@ def selfEmployment(): # rida q2
     
     plt.legend()
     plt.show()
+
+    xy = selfEmployment()
+    print(xy)
     
 
 def print_menu():
@@ -462,8 +467,8 @@ def company_culture(): #Haaniah, Amina, Rida
         elif choice == 'b':
             print("--- Do the staff in tech companies have a good attitude towards mental health? ---")
             # Your method call for the question here - rida q1
-            xy = staffAttitude()
-            print(xy)
+            staffAttitude()
+            
 
         elif choice == '0':
             break
@@ -518,8 +523,8 @@ def work_environment(): #Haaniah, Amina, Rida
         elif choice == 'd':
             print("--- Does being self-employed increase the chances of mental health? ---")
             # Your method call for the question here - rida q2
-            staff = selfEmployment()
-            print(staff)
+            selfEmployment()
+            
 
         elif choice == '0':
             break
