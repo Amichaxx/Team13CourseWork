@@ -335,16 +335,21 @@ def culture_and_countries(): #Tsiko, Khushi
             print("--- In what ways do cultural distinctions affect how tech workers in Japan and the US see and handle mental health concerns? ---")
             # Your method call for the question here
             treatment = ['Japan','United States']
+            
             seek_Yes = data[(data['treatment'] == 'Yes')]
             seek_No = data[(data['treatment'] == 'No')]
-            sa_y = data[(data['United States']) & (data['treatment'] == 'Yes')].shape[0]
-            ja_y = data[(data['Japan']) & (data['treatment'] == 'Yes')].shape[0]
+            
+            sa_y = data[(data['Country'] ==  'United States') & (data['treatment'] == 'Yes')].shape[0]
+            ja_y = data[(data['Country'] == 'Japan') & (data['treatment'] == 'Yes')].shape[0]
 
-            sa_n = data[(data['United States']) & (data['treatment'] == 'No')].shape[0]
-            ja_n = data[(data['Japan']) & (data['treatment'] == 'No')].shape[0] 
+            sa_n = data[(data['Country'] ==  'United States') & (data['treatment'] == 'No')].shape[0]
+            ja_n = data[(data['Country'] == 'Japan') & (data['treatment'] == 'No')].shape[0] 
+            
+            yes_labels = [sa_y, ja_y]
+            no_labels = [sa_n, ja_n]
 
-            plt.bar(x_labels, yes_labels, color='blue', label='seekedhelp')
-            plt.bar(x_labels, no_labels, color='pink', label='seeked help')
+            plt.bar(treatment, yes_labels, color='blue', label='seekedhelp')
+            plt.bar(treatment, no_labels, color='pink', label='seeked help')
                                                                                  
                                                
             plt.title('affect of cultural distinction ')
