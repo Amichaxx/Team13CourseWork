@@ -15,11 +15,11 @@ def mental_health_by_gender():
     other_supervisor_counts = other_data['supervisor'].value_counts().sort_index()
 
     # Plot the results
-    x_labels = ['Yes', 'Some of them', 'No']
+    x_labels = ['Female', 'Male', 'Other']
     plt.figure(figsize=(8, 6))
-    plt.bar(x_labels, female_supervisor_counts, color='purple', label='Female')
-    plt.bar(x_labels, male_supervisor_counts, color='teal', label='Male', bottom=female_supervisor_counts)
-    plt.bar(x_labels, other_supervisor_counts, color='turquoise', label='Other', bottom=male_supervisor_counts + female_supervisor_counts)
+    plt.bar(x_labels, female_supervisor_counts, color='purple', label='No')
+    plt.bar(x_labels, male_supervisor_counts, color='teal', label='Yes', bottom=female_supervisor_counts)
+    plt.bar(x_labels, other_supervisor_counts, color='turquoise', label='Some', bottom=male_supervisor_counts + female_supervisor_counts)
     
 
     plt.title('Supervisor Reports by Gender', fontname="Times New Roman", fontsize=18)
