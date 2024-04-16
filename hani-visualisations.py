@@ -32,6 +32,18 @@ def remoteWorking(): #hani q1
     
     plt.legend()
     plt.show()
+    
+    # displaying some stats
+    office = office_1 + office_2 + office_3 + office_4
+    remote = remote_1 + remote_2 + remote_3 + remote_4
+    
+    print()
+    print("Number of Office Workers: ", office)
+    print("Number of Remote Workers: ", remote)
+    print()
+    
+    print()
+    
 
    
 def DiscussionInCompanies(): #hani q2
@@ -100,7 +112,7 @@ def DiscussionInCompanies(): #hani q2
     plt.figure(1)
     plt.legend(title='Company Size')
     plt.tight_layout()
-    plt.show()  
+    plt.show() 
     
     # --- And does this have a positive/negative outcome? ---
     # answer columns: mental_health_consequence, phys_health_consequence
@@ -191,6 +203,6 @@ print()
 print("--- Does remote working have a positive/negative effect on mental health (compared to working in an office)? --- ")
 remoteWorking()
 print()
-print("--- Are employees in larger companies more likely to discuss mental health related issues with co-workers and/or supervisors? And does this have a positive/negative outcome?---")
-DiscussionInCompanies()
-print()
+#print("--- Are employees in larger companies more likely to discuss mental health related issues with co-workers and/or supervisors? And does this have a positive/negative outcome?---")
+#DiscussionInCompanies()
+#print()
