@@ -177,11 +177,11 @@ def DiscussionInCompanies(): #hani q2
     
     plt.subplot(1, 2, 1)
     plt.title('Mental Health Consequences')
-    plt.pie(y_labels_l_mental, labels=x_labels_pie, autopct='%1.1f%%', colors=['pink','lightpink','hotpink'])
+    plt.pie(y_labels_l_mental, labels=x_labels_pie, autopct='%1.1f%%', colors=['hotpink','deeppink','pink'])
 
     plt.subplot(1, 2, 2)
     plt.title('Physical Health Consequenses')
-    plt.pie(y_labels_l_phys, labels=x_labels_pie, autopct='%1.1f%%', colors=['pink','lightpink','hotpink'])
+    plt.pie(y_labels_l_phys, labels=x_labels_pie, autopct='%1.1f%%', colors=['hotpink','deeppink','pink'])
     
     plt.tight_layout()
     plt.show()
