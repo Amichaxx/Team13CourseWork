@@ -7,7 +7,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
  
 data = pd.read_csv("survey.csv")
-
 #2[b] Which gender is more likely to report mental health related issues?
 def reports_by_gender():
 # Filter data for each supervisor reports 
