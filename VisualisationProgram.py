@@ -3,37 +3,10 @@ import matplotlib.pyplot as plt
 
 data = pd.read_csv("survey.csv")
 
- kiyah_visualizations
 import pandas as pd
 import matplotlib.pyplot as plt
  
 data = pd.read_csv("survey.csv")
-=======
-def mental_health_by_gender():
-# Filter data for each gender
-    female_data = data[data['Gender'] == 'female']
-    male_data = data[data['Gender'] == 'male']
-    other_data = data[data['Gender'] == 'other']
-
-    # Count responses for each supervisor report
-    female_supervisor_counts = female_data['supervisor'].value_counts().sort_index()
-    male_supervisor_counts = male_data['supervisor'].value_counts().sort_index()
-    other_supervisor_counts = other_data['supervisor'].value_counts().sort_index()
-
-    # Plot the results
-    x_labels = ['Female', 'Male', 'Other']
-    plt.figure(figsize=(8, 6))
-    plt.bar(x_labels, female_supervisor_counts, color='purple', label='No')
-    plt.bar(x_labels, male_supervisor_counts, color='teal', label='Yes', bottom=female_supervisor_counts)
-    plt.bar(x_labels, other_supervisor_counts, color='turquoise', label='Some', bottom=male_supervisor_counts + female_supervisor_counts)
-    
-
-    plt.title('Supervisor Reports by Gender', fontname="Times New Roman", fontsize=18)
-    plt.xlabel("Supervisor Reports", fontname="Times New Roman", fontsize=12) 
-    plt.ylabel("Number of Responses", fontname="Times New Roman", fontsize=12) 
-    plt.legend()
-    plt.show()
-     main
 
 #2[b] Which gender is more likely to report mental health related issues?
 def reports_by_gender():
