@@ -3,10 +3,37 @@ import matplotlib.pyplot as plt
 
 data = pd.read_csv("survey.csv")
 
+ kiyah_visualizations
 import pandas as pd
 import matplotlib.pyplot as plt
  
 data = pd.read_csv("survey.csv")
+=======
+def mental_health_by_gender():
+# Filter data for each gender
+    female_data = data[data['Gender'] == 'female']
+    male_data = data[data['Gender'] == 'male']
+    other_data = data[data['Gender'] == 'other']
+
+    # Count responses for each supervisor report
+    female_supervisor_counts = female_data['supervisor'].value_counts().sort_index()
+    male_supervisor_counts = male_data['supervisor'].value_counts().sort_index()
+    other_supervisor_counts = other_data['supervisor'].value_counts().sort_index()
+
+    # Plot the results
+    x_labels = ['Female', 'Male', 'Other']
+    plt.figure(figsize=(8, 6))
+    plt.bar(x_labels, female_supervisor_counts, color='purple', label='No')
+    plt.bar(x_labels, male_supervisor_counts, color='teal', label='Yes', bottom=female_supervisor_counts)
+    plt.bar(x_labels, other_supervisor_counts, color='turquoise', label='Some', bottom=male_supervisor_counts + female_supervisor_counts)
+    
+
+    plt.title('Supervisor Reports by Gender', fontname="Times New Roman", fontsize=18)
+    plt.xlabel("Supervisor Reports", fontname="Times New Roman", fontsize=12) 
+    plt.ylabel("Number of Responses", fontname="Times New Roman", fontsize=12) 
+    plt.legend()
+    plt.show()
+     main
 
 #2[b] Which gender is more likely to report mental health related issues?
 def reports_by_gender():
@@ -86,11 +113,13 @@ def remoteWorking(): #hani q1
     y_labels_o = [office_1, office_2, office_3,office_4]
 
     plt.title('The Effects of Remote Working on Mental Health')
-    plt.plot(x_labels, y_labels, color='turquoise', label = 'Remote')
+    plt.plot(x_labels, y_labels, color='green', label = 'Remote')
     plt.plot(x_labels, y_labels_o, color='mediumaquamarine', label = 'Office')
     
     plt.xlabel('Frequency of Work Interference')
     plt.ylabel('No. of Responses')
+    
+    plt.ylim(bottom = 0)
     
     plt.legend()
     plt.show()
@@ -233,7 +262,7 @@ def DiscussionInCompanies(): #hani q2
     plt.tight_layout()
     plt.show()
     
-    # figure 2.3: large
+    # figure 4: large
     plt.figure(4)
     plt.suptitle("Consquences of Discussing Mental Health Related Issues in a Large Sized Company")
     
@@ -247,6 +276,98 @@ def DiscussionInCompanies(): #hani q2
     
     plt.tight_layout()
     plt.show()
+
+# def image(): # rida q1
+def staffAttitude():
+# Do the staff in tech companies have a good attitude towards mental health?
+# Columns used: coworkers, supervisors, seek_help
+    coworker_1 = data[(data['coworkers'] == 1) & (data['seek_help'] == 1)].shape[0] #yes
+    coworker_2 = data[(data['coworkers'] == 1) & (data['seek_help'] == 2)].shape[0] #no
+    coworker_3 = data[(data['coworkers'] == 1) & (data['seek_help'] == 3)].shape[0] #don't know
+
+    supervisor_1 = data[(data['supervisor'] == 1) & (data['seek_help'] == 1)].shape[0] #yes
+    supervisor_2 = data[(data['supervisor'] == 1) & (data['seek_help'] == 2)].shape[0] #no
+    supervisor_3 = data[(data['supervisor'] == 1) & (data['seek_help'] == 3)].shape[0] #don't know
+
+    x = ['Yes', 'No', 'Dont know']
+    y = [coworker_1, coworker_2, coworker_3]
+    z = [supervisor_1, supervisor_2, supervisor_3]
+
+    fig, (coworkers, supervisor) = plt.subplots(1, 2, sharey=True, figsize=(8,8))
+    coworkers.set_title("Staff seeking help from coworkers")
+    supervisor.set_title("Staff seeking help from supervisors")
+
+
+    coworkers.bar(x, y, color=['plum','pink','paleturquoise'])
+    supervisor.bar(x, z, color=['lightsalmon', 'bisque', 'palegreen'])
+
+    coworkers.set_xlabel('Frequency of coworkers')
+    coworkers.set_ylabel('Responses')
+    supervisor.set_xlabel('Frequency of supervisors')
+    supervisor.set_ylabel('Responses')
+
+    plt.ylim(bottom = 0)
+
+    plt.legend()
+    plt.show()
+
+    staff = staffAttitude()
+    print(staff)
+
+def selfEmployment(): # rida q2
+# Does being self-employed increase the chances of mental health issues?
+# Columns used: self_employed, work_interference
+
+    self_employed_1 = data[(data['self_employed'] == 'Yes') & (data['work_interfere'] == 1)].shape[0] # often
+    self_employed_2 = data[(data['self_employed'] == 'Yes') & (data['work_interfere'] == 2)].shape[0] # sometimes
+    self_employed_3 = data[(data['self_employed'] == 'Yes') & (data['work_interfere'] == 3)].shape[0] # rarely
+    self_employed_4 = data[(data['self_employed'] == 'Yes') & (data['work_interfere'] == 4)].shape[0] # never
+    
+    x = ['Often', 'Sometimes', 'Rarely', 'Never']
+    y = [self_employed_1, self_employed_2, self_employed_3, self_employed_4]
+    
+    plt.title('How self - employment effects mental health')
+    plt.bar(x, y, color= ['firebrick', 'darkorange', 'dimgray', 'midnightblue'])
+    
+    plt.xlabel('Frequency of Work Interference')
+    plt.ylabel('Responses')
+    
+    plt.ylim(bottom = 0)
+    
+    plt.legend()
+    plt.show()
+
+    xy = selfEmployment()
+    print(xy)
+
+def treatment():
+
+    countries = ['United States', 'United Kingdom']
+    
+    sa_y = data[(data['Country'] ==  'United States') & (data['treatment'] == 'Yes')].shape[0]
+    ja_y = data[(data['Country'] == 'United Kingdom') & (data['treatment'] == 'Yes')].shape[0]
+
+    sa_n = data[(data['Country'] ==  'United States') & (data['treatment'] == 'No')].shape[0]
+    ja_n = data[(data['Country'] == 'United Kingdom') & (data['treatment'] == 'No')].shape[0] 
+    
+    yes_labels = [sa_y, ja_y]
+    no_labels = [sa_n, ja_n]
+    
+    x_length = range(len(countries))
+    width = 0.25
+
+    plt.bar(countries, yes_labels, width=width, color='blue', label='seeked help')
+    plt.bar([x + width for x in x_length], no_labels, width=width, color='pink', label='not seeked help')
+                                                                            
+                                        
+    plt.title('sought treatment for mental health')
+    plt.xlabel('Country')
+    plt.ylabel('Number of responses')
+    plt.grid(True)
+    plt.legend()
+    plt.show()
+    
+    print(data[data["Country"] == 'United Kingdom'])
     
 
 def print_menu():
@@ -277,15 +398,75 @@ def culture_and_countries(): #Tsiko, Khushi
         print("Questions:")
         print("[a] Which country has the highest mental health issues?")
         print("[b] Is there an increase in mental health awareness in higher income countries than lower income countries?")
+        print("[c] Does the country provide any kind of support or resources for people dealing with mental health?")
+        print("[d] Whether or not people from United States and United Kingdom seek treatment for mental health issues?")
         print("[0] Back to main menu")
 
         choice = input("Enter your option: ").strip().lower()
         if choice == 'a':
-            print("--- Which country has the highest mental health issues? ---")
+            print("--- Which continent has the highest mental health issues? ---")
             # Your method call for the question here
+            print("--- Which continent has the highest mental health issues? ---")
+            seekYes = data[(data['seek_help'] == 1)]
+            seekNo = data[(data['seek_help'] == 2)] 
+            seekUnsure = data[(data['seek_help'] == 3)]
+            
+        
+            northAmerica = (data['Country'] == 'United States') | (data['Country'] == 'Canada') | (data['Country'] == 'Mexico')
+            southAmerica = (data['Country'] == 'Brazil') | (data['Country'] == 'Colombia')
+            oceania = (data['Country'] == 'Australia') | (data['Country'] == 'New Zealand')
+            africa = (data['Country'] == 'South Africa')
+            asia= (data['Country'] == 'India') | (data['Country'] == 'Thailand') | (data['Country'] == 'Japan')| (data['Country'] == 'Philippines')| (data['Country'] == 'China')| (data['Country'] == 'Singapore')
+            europe = (data['Country'] == 'United Kingdom') | (data['Country'] == 'Bulgaria') | (data['Country'] == 'Netherland')| (data['Country'] == 'Poland')| (data['Country'] == 'France')| (data['Country'] == 'Germany')| (data['Country'] == 'Slovenia')| (data['Country'] == 'Ireland')| (data['Country'] == 'Russia')| (data['Country'] == 'Italy')| (data['Country'] == 'Portugal')| (data['Country'] == 'Switzerland')| (data['Country'] == 'Belgium')| (data['Country'] == 'Sweden')| (data['Country'] == 'Finland')| (data['Country'] == 'Bosnia and Herzegovina')| (data['Country'] == 'Austria')| (data['Country'] == 'Hungary')| (data['Country'] == 'Crotia')| (data['Country'] == 'Denmark')| (data['Country'] == 'Moldova')| (data['Country'] == 'Georgia')| (data['Country'] == 'Czech Republic')                               
+            x_labels=['North America', 'South America', 'Oceania', 'Africa', 'Asia', 'europe']
+           
+            na_y = data[(northAmerica) & (data['seek_help'] == 1)].shape[0]
+            sa_y = data[(southAmerica) & (data['seek_help'] == 1)].shape[0]
+            oc_y = data[(oceania) & (data['seek_help'] == 1)].shape[0] # 10
+            af_y = data[(africa) & (data['seek_help'] == 1)].shape[0] # 0
+            as_y = data[(asia) & (data['seek_help'] == 1)].shape[0]
+            eu_y = data[(europe) & (data['seek_help'] == 1)].shape[0]
+            
+            na_n = data[(northAmerica) & (data['seek_help'] == 2)].shape[0]
+            sa_n = data[(southAmerica) & (data['seek_help'] == 2)].shape[0]
+            oc_n = data[(oceania) & (data['seek_help'] == 2)].shape[0] # 10
+            af_n = data[(africa) & (data['seek_help'] == 2)].shape[0] # 0
+            as_n = data[(asia) & (data['seek_help'] == 2)].shape[0]
+            eu_n = data[(europe) & (data['seek_help'] == 2)].shape[0]
+
+            na_us = data[(northAmerica) & (data['seek_help'] == 3)].shape[0]
+            sa_us = data[(southAmerica) & (data['seek_help'] == 3)].shape[0]
+            oc_us = data[(oceania) & (data['seek_help'] == 3)].shape[0] # 10
+            af_us = data[(africa) & (data['seek_help'] == 3)].shape[0] # 0
+            as_us = data[(asia) & (data['seek_help'] == 3)].shape[0]
+            eu_us = data[(europe) & (data['seek_help'] == 3)].shape[0]
+            
+            yes_labels=[na_y, sa_y, oc_y, af_y, as_y, eu_y]
+            no_labels=[na_n, sa_n, oc_n, af_n, as_n, eu_n]
+            unsure_labels=[na_us, sa_us, oc_us, af_us, as_us, eu_us]
+    
+            plt.plot(x_labels, yes_labels, color='red', label='Experienced mental health')
+            plt.plot(x_labels, no_labels, color='green', label='Not experienced mental health')
+            plt.plot(x_labels, unsure_labels, color='purple', label='Unsure ')
+        
+            #plt.plot(country_ref3, color='green', label='Unsure')
+
+            plt.title('Most common country for experiencing mental health')
+            plt.xlabel('Country')
+            plt.ylabel('Number of employees')
+            plt.grid(True)
+            plt.legend()
+            plt.show()
         elif choice == 'b':
             print("--- Is there an increase in mental health awareness in higher income countries than lower income countries? ---")
             # Your method call for the question here
+        elif choice == 'c':
+            print("--- Does the country provide any kind of support or resources for people dealing with mental health? ---")
+            # Your method call for the question here
+        elif choice == 'd':
+            print("--- Whether or not people from United States and United Kingdom seek treatment for mental health issues?​ ---")
+            # Your method call for the question here
+            treatment()
         elif choice == '0':
             break
         else:
@@ -374,7 +555,7 @@ def company_culture(): #Haaniah, Amina, Rida
         print("=== Company Culture ===")
         print("Questions:")
         print("[a] Do employees in companies with wellness programs report lower levels of work interference because of their mental health?")
-        print("[b] Does the staff in the company have a good or bad image on mental health?")
+        print("[b] Do the staff in tech companies have a good attitude towards mental health?")
         print("[0] Back to main menu")
 
         choice = input("Enter your option: ").strip().lower()
@@ -408,8 +589,11 @@ def company_culture(): #Haaniah, Amina, Rida
             plt.show()
 
         elif choice == 'b':
-            print("--- Does the staff in the company have a good or bad image on mental health? ---")
-            # Your method call for the question here
+            print("--- Do the staff in tech companies have a good attitude towards mental health? ---")
+            # Your method call for the question here - rida q1
+            staffAttitude()
+            
+
         elif choice == '0':
             break
         else:
@@ -462,7 +646,10 @@ def work_environment(): #Haaniah, Amina, Rida
 
         elif choice == 'd':
             print("--- Does being self-employed increase the chances of mental health? ---")
-            # Your method call for the question here
+            # Your method call for the question here - rida q2
+            selfEmployment()
+            
+
         elif choice == '0':
             break
         else:
