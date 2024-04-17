@@ -33,7 +33,7 @@ def mental_health_by_gender():
     plt.ylabel("Number of Responses", fontname="Times New Roman", fontsize=12) 
     plt.legend()
     plt.show()
-     main
+    
 
 #2[b] Which gender is more likely to report mental health related issues?
 def reports_by_gender():
