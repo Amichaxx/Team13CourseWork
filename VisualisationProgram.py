@@ -8,7 +8,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
  
 data = pd.read_csv("survey.csv")
-=======
+
 def mental_health_by_gender():
 # Filter data for each gender
     female_data = data[data['Gender'] == 'female']
