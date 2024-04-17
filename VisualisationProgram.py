@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 data = pd.read_csv("survey.csv")
 
- kiyah_visualizations
+
 import pandas as pd
 import matplotlib.pyplot as plt
  
