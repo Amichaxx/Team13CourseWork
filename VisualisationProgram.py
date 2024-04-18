@@ -309,9 +309,6 @@ def selfEmployment(): # rida q2
     plt.legend()
     plt.show()
 
-    xy = selfEmployment()
-    print(xy)
-
 def treatment():
 
     countries = ['United States', 'United Kingdom']
@@ -621,7 +618,6 @@ def work_environment(): #Haaniah, Amina, Rida
             # Your method call for the question here - rida q2
             selfEmployment()
             
-
         elif choice == '0':
             break
         else:
