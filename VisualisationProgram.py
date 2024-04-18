@@ -283,9 +283,6 @@ def staffAttitude():
     plt.legend()
     plt.show()
 
-    staff = staffAttitude()
-    print(staff)
-
 def selfEmployment(): # rida q2
 # Does being self-employed increase the chances of mental health issues?
 # Columns used: self_employed, work_interference
