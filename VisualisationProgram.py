@@ -204,17 +204,17 @@ def DiscussionInCompanies(): #hani q2
     y_labels_l_mental = [large_1_mental, large_2_mental, large_3_mental]
     y_labels_l_phys = [large_1_phys, large_2_phys, large_3_phys]
     
-    # figure 2: small
+     # figure 2: small
     plt.figure(2)
     plt.suptitle("Consquences of Discussing Mental Health Related Issues in a Small Sized Company")
             
     plt.subplot(1, 2, 1)
     plt.title('Mental Health Consequences')
-    plt.pie(y_labels_s_mental, labels=x_labels_pie, autopct='%1.1f%%', colors=['powderblue','lightblue','skyblue'])
+    plt.pie(y_labels_s_mental, labels=x_labels_pie, autopct='%1.1f%%', colors=['skyblue','steelblue','powderblue'])
 
     plt.subplot(1, 2, 2)
     plt.title('Physical Health Consequenses')
-    plt.pie(y_labels_s_phys, labels=x_labels_pie, autopct='%1.1f%%', colors=['powderblue','lightblue','skyblue'])
+    plt.pie(y_labels_s_phys, labels=x_labels_pie, autopct='%1.1f%%', colors=['skyblue','steelblue','powderblue'])
     
     plt.tight_layout()
     plt.show()
@@ -240,11 +240,11 @@ def DiscussionInCompanies(): #hani q2
     
     plt.subplot(1, 2, 1)
     plt.title('Mental Health Consequences')
-    plt.pie(y_labels_l_mental, labels=x_labels_pie, autopct='%1.1f%%', colors=['pink','lightpink','hotpink'])
+    plt.pie(y_labels_l_mental, labels=x_labels_pie, autopct='%1.1f%%', colors=['hotpink','deeppink','pink'])
 
     plt.subplot(1, 2, 2)
     plt.title('Physical Health Consequenses')
-    plt.pie(y_labels_l_phys, labels=x_labels_pie, autopct='%1.1f%%', colors=['pink','lightpink','hotpink'])
+    plt.pie(y_labels_l_phys, labels=x_labels_pie, autopct='%1.1f%%', colors=['hotpink','deeppink','pink'])
     
     plt.tight_layout()
     plt.show()
